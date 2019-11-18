@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="product">
+            <h2><span>Product</span> {{product.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{product.description}}</span>
+                </dd>
+                <dt><span>Hs Code</span></dt>
+                <dd>
+                    <span>{{product.hsCode}}</span>
+                </dd>
+                <dt><span>Sku Code</span></dt>
+                <dd>
+                    <span>{{product.skuCode}}</span>
+                </dd>
+                <dt><span>Country Of Org</span></dt>
+                <dd>
+                    <span>{{product.countryOfOrg}}</span>
+                </dd>
+                <dt><span>Unit Price</span></dt>
+                <dd>
+                    <span>{{product.unitPrice}}</span>
+                </dd>
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{product.quantity}}</span>
+                </dd>
+                <dt><span>Item Value</span></dt>
+                <dd>
+                    <span>{{product.itemValue}}</span>
+                </dd>
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{product.createdDate}}</span>
+                </dd>
+                <dt><span>Updated Date</span></dt>
+                <dd>
+                    <span>{{product.updatedDate}}</span>
+                </dd>
+                <dt><span>Created By User</span></dt>
+                <dd>
+                    {{product.createdByUserId}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product', product.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
