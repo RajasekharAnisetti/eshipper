@@ -10,6 +10,8 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IProduct, Product } from 'app/shared/model/product.model';
 import { ProductService } from './product.service';
+import { ICurrency } from 'app/shared/model/currency.model';
+import { CurrencyService } from 'app/entities/currency/currency.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 
@@ -19,6 +21,8 @@ import { UserService } from 'app/core/user/user.service';
 })
 export class ProductUpdateComponent implements OnInit {
   isSaving: boolean;
+
+  currencies: ICurrency[];
 
   users: IUser[];
 
@@ -33,12 +37,14 @@ export class ProductUpdateComponent implements OnInit {
     itemValue: [],
     createdDate: [],
     updatedDate: [],
+    currencyId: [],
     createdByUserId: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected productService: ProductService,
+    protected currencyService: CurrencyService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -49,6 +55,9 @@ export class ProductUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
     });
+    this.currencyService
+      .query()
+      .subscribe((res: HttpResponse<ICurrency[]>) => (this.currencies = res.body), (res: HttpErrorResponse) => this.onError(res.message));
     this.userService
       .query()
       .subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body), (res: HttpErrorResponse) => this.onError(res.message));
@@ -66,6 +75,7 @@ export class ProductUpdateComponent implements OnInit {
       itemValue: product.itemValue,
       createdDate: product.createdDate != null ? product.createdDate.format(DATE_TIME_FORMAT) : null,
       updatedDate: product.updatedDate != null ? product.updatedDate.format(DATE_TIME_FORMAT) : null,
+      currencyId: product.currencyId,
       createdByUserId: product.createdByUserId
     });
   }
@@ -99,6 +109,7 @@ export class ProductUpdateComponent implements OnInit {
         this.editForm.get(['createdDate']).value != null ? moment(this.editForm.get(['createdDate']).value, DATE_TIME_FORMAT) : undefined,
       updatedDate:
         this.editForm.get(['updatedDate']).value != null ? moment(this.editForm.get(['updatedDate']).value, DATE_TIME_FORMAT) : undefined,
+      currencyId: this.editForm.get(['currencyId']).value,
       createdByUserId: this.editForm.get(['createdByUserId']).value
     };
   }
@@ -117,6 +128,10 @@ export class ProductUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackCurrencyById(index: number, item: ICurrency) {
+    return item.id;
   }
 
   trackUserById(index: number, item: IUser) {

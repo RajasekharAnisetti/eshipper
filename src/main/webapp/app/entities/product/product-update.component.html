@@ -92,6 +92,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" for="field_currency">Currency</label>
+                    <select class="form-control" id="field_currency" name="currency" formControlName="currencyId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="currencyOption.id" *ngFor="let currencyOption of currencies; trackBy: trackCurrencyById">{{currencyOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_createdByUser">Created By User</label>
                     <select class="form-control" id="field_createdByUser" name="createdByUser" formControlName="createdByUserId">
                         <option [ngValue]="null"></option>
