@@ -11,6 +11,7 @@ export interface IProduct {
   itemValue?: number;
   createdDate?: Moment;
   updatedDate?: Moment;
+  currencyId?: number;
   createdByUserId?: number;
 }
 
@@ -26,6 +27,7 @@ export class Product implements IProduct {
     public itemValue?: number,
     public createdDate?: Moment,
     public updatedDate?: Moment,
+    public currencyId?: number,
     public createdByUserId?: number
   ) {}
 }

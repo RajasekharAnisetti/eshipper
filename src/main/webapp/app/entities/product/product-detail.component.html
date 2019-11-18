@@ -41,6 +41,12 @@
                 <dd>
                     <span>{{product.updatedDate}}</span>
                 </dd>
+                <dt><span>Currency</span></dt>
+                <dd>
+                    <div *ngIf="product.currencyId">
+                        <a [routerLink]="['/currency', product.currencyId, 'view']">{{product.currencyId}}</a>
+                    </div>
+                </dd>
                 <dt><span>Created By User</span></dt>
                 <dd>
                     {{product.createdByUserId}}
