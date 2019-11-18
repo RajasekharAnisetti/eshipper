@@ -1,0 +1,55 @@
+entity WoPod {
+
+  signedBy String maxlength(255)
+  reportTo String maxlength(255)
+  podDateTime ZonedDateTime 
+  internalComments String maxlength(1000)
+  subTotal Float
+  gst Float 
+  hst Float 
+  pst Float
+  qst Float
+  total Float
+}
+
+entity WoPodCharge {
+  quantity Integer
+
+}
+entity WoWorkOrder{
+
+  isDeleted Boolean
+
+
+}
+
+entity WoTaxTypes {
+  name String maxlength(255)  
+}
+
+entity Currency {
+  name String maxlength(255)  
+}
+
+entity EshipperUser {
+login String maxlength(255)
+}
+
+relationship ManyToOne {
+  
+  WoPod to Currency
+  WoPodCharge to WoPod
+  WoWorkOrder{quotedByUser} to EshipperUser
+}
+
+relationship OneToOne {
+  
+  WoPod to WoWorkOrder
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceImpl
