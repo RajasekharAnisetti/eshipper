@@ -8,6 +8,12 @@
     -->
     <changeSet id="20191118070749-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="currency_id"
+                                 baseTableName="product"
+                                 constraintName="fk_product_currency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="currency"/>
+
         <addForeignKeyConstraint baseColumnNames="created_by_user_id"
                                  baseTableName="product"
                                  constraintName="fk_product_created_by_user_id"

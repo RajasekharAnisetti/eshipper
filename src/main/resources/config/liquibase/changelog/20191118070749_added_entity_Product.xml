@@ -43,6 +43,9 @@
             <column name="updated_date" type="datetime">
                 <constraints nullable="true" />
             </column>
+            <column name="currency_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="created_by_user_id" type="varchar(100)">
                 <constraints nullable="true" />
             </column>
