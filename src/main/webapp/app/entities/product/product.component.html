@@ -28,6 +28,7 @@
             <th scope="col" ><span>Item Value</span></th>
             <th scope="col" ><span>Created Date</span></th>
             <th scope="col" ><span>Updated Date</span></th>
+            <th scope="col" ><span>Currency</span></th>
             <th scope="col" ><span>Created By User</span></th>
             <th scope="col"></th>
             </tr>
@@ -44,6 +45,11 @@
                 <td>{{product.itemValue}}</td>
                 <td>{{product.createdDate | date:'medium'}}</td>
                 <td>{{product.updatedDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="product.currencyId">
+                        <a [routerLink]="['/currency', product.currencyId , 'view' ]" >{{product.currencyId}}</a>
+                    </div>
+                </td>
                 <td>
                     {{product.createdByUserId}}
                 </td>

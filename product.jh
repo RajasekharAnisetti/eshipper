@@ -13,10 +13,13 @@ entity Product {
 entity User {
 name String maxlength(255)
 }
-
+entity Currency {
+name String maxlength(255)
+}
 
 relationship ManyToOne {
-   Product{createdByUser} to User   
+   Product{currency} to Currency
+   Product{createdByUser} to User
 }
 
 

@@ -35,6 +35,8 @@ public class ProductDTO implements Serializable {
     private ZonedDateTime updatedDate;
 
 
+    private Long currencyId;
+
     private Long createdByUserId;
 
     public Long getId() {
@@ -117,6 +119,14 @@ public class ProductDTO implements Serializable {
         this.updatedDate = updatedDate;
     }
 
+    public Long getCurrencyId() {
+        return currencyId;
+    }
+
+    public void setCurrencyId(Long currencyId) {
+        this.currencyId = currencyId;
+    }
+
     public Long getCreatedByUserId() {
         return createdByUserId;
     }
@@ -159,6 +169,7 @@ public class ProductDTO implements Serializable {
             ", itemValue=" + getItemValue() +
             ", createdDate='" + getCreatedDate() + "'" +
             ", updatedDate='" + getUpdatedDate() + "'" +
+            ", currency=" + getCurrencyId() +
             ", createdByUser=" + getCreatedByUserId() +
             "}";
     }

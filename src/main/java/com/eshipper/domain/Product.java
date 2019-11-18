@@ -57,6 +57,10 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("products")
+    private Currency currency;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("products")
     private User createdByUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -183,6 +187,19 @@ public class Product implements Serializable {
 
     public void setUpdatedDate(ZonedDateTime updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public Product currency(Currency currency) {
+        this.currency = currency;
+        return this;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public User getCreatedByUser() {
